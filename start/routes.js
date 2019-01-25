@@ -34,6 +34,7 @@ Route.group(() => {
     Route.get('suppliers/page/:page?', 'SuplierController.index')
     Route.post('suppliers', 'SuplierController.store')
     Route.get('suppliers', 'SuplierController.create')
+    Route.get('suppliers/edit/:id', 'SuplierController.edit')
     Route.put('suppliers/:id', 'SuplierController.update')
     Route.delete('suppliers/:id', 'SuplierController.destroy')
 

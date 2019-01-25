@@ -1,0 +1,129 @@
+@layout('layouts.main')
+
+
+@section('main')
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+          <h4 class="card-title">Suppliers# {{supplier.id}}</h4>
+            
+            <form class="forms-sample" action="{{ route('SuplierController.update', {id: supplier.id }), _method=PUT }}" method="POST">
+                    {{ csrfField() }}
+              <div class="form-group">
+                <label for="sup_businessname">Business Name</label>
+                <input type="text" 
+                        class="form-control" 
+                        id="sup_businessname" 
+                        placeholder="Business Name" 
+                        name="sup_businessname" 
+                        value="{{supplier.sup_businessname}}">
+              </div>
+              <span class="flash">  
+                    @if(hasErrorFor('sup_businessname'))
+                          <span>
+                              {{ getErrorFor('sup_businessname') }}
+                          </span>
+                    @endif
+                </span>
+              <div class="form-group">
+                <label for="sup_telephone">Telephone</label>
+              <input type="text" 
+                        class="form-control" 
+                        id="sup_telephone" 
+                        name="sup_telephone" 
+                        placeholder="Telephone" 
+                        value="{{supplier.sup_telephone}}">
+              </div>
+              <span class="flash">
+                @if(hasErrorFor('sup_telephone'))
+                    <span>
+                        {{ getErrorFor('sup_telephone') }}
+                    </span>
+                @endif
+            </span>
+              <div class="form-group">
+                    <label for="sup_address">Address</label>
+                  <input type="text" 
+                            class="form-control" 
+                            id="sup_address" 
+                            name="sup_address" 
+                            placeholder="Address" 
+                            value="{{supplier.sup_address}}">
+                  </div>
+                  <span class="flash">
+                  @if(hasErrorFor('sup_address'))
+                        <span>
+                            {{ getErrorFor('sup_address') }}
+                        </span>
+                    @endif
+                </span>
+            <div class="form-group">
+                        <label for="sup_email">Email Address</label>
+                      <input type="text" 
+                                class="form-control" 
+                                id="sup_email" 
+                                name="sup_email" 
+                                placeholder="Email Address" 
+                                value="{{supplier.sup_email}}">
+                      </div>
+                      <span class="flash">
+                      @if(hasErrorFor('sup_email'))
+              <span>
+                  {{ getErrorFor('sup_email') }}
+              </span>
+          @endif
+        </span>
+
+        <div class="form-group">
+                <label for="sup_website">Website Address</label>
+              <input type="text" 
+                        class="form-control" 
+                        id="sup_website" 
+                        name="sup_website" 
+                        placeholder="Website Address" 
+                        value="{{supplier.sup_website}}">
+        </div>
+        <span class="flash">
+              @if(hasErrorFor('sup_website'))
+                <span>
+                    {{ getErrorFor('sup_website') }}
+                </span>
+            @endif
+         </span>
+
+         <div class="form-group">
+                <label for="sup_industrytype">Industry Type</label>
+              <select  
+                        class="form-control" 
+                        id="sup_industrytype" 
+                        name="sup_industrytype" 
+                        placeholder="Website Address" 
+                        value="{{supplier.sup_industrytype}}">
+                        <option value="1">Information Technology</option>
+                        <option value="2">Finance</option>
+                        <option value="3">Internet</option>
+                </select>
+        </div>
+        <span class="flash">
+              @if(hasErrorFor('sup_industrytype'))
+                <span>
+                    {{ getErrorFor('sup_industrytype') }}
+                </span>
+            @endif
+         </span>
+              
+        
+              <div class="form-group">
+                <label for="sup_additional">Additional Information</label>
+                <textarea class="form-control" id="sup_additional" name="sup_additional" placeholder="Additional Information" rows="4" value="{{supplier.sup_additional}}"></textarea>
+              </div>
+              <button type="submit" class="btn btn-success mr-2">Submit</button>
+              <button class="btn btn-light">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+@endsection

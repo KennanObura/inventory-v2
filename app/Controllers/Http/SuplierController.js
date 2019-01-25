@@ -143,6 +143,14 @@ class SuplierController {
    * @param {View} ctx.view
    */
   async edit({ params, request, response, view }) {
+    const supplierId = params.id
+
+    const supplier = await Suplier.find(supplierId)
+
+    return view.render('layouts.suppliers.edit', {supplier: supplier.toJSON()})
+
+    // return response.json(supplier)
+
   }
 
   /**
@@ -154,6 +162,25 @@ class SuplierController {
    * @param {Response} ctx.response
    */
   async update({ params, request, response }) {
+
+    //get parameters
+    const values = request.all()
+
+    //assign the supplier to the supplier instance
+    const supplier = await Suplier.find(params.id)
+    supplier.sup_businessname = values.sup_businessname
+    supplier.sup_telephone = values.sup_telephone
+    supplier.sup_address = values.sup_address
+    supplier.sup_email = values.sup_email
+    supplier.sup_website = values.sup_website
+    supplier.sup_industrytype = values.sup_industrytype
+    supplier.sup_additional = values.sup_additional
+
+
+    //store changes
+    await supplier.save()
+
+    return response.route('SuplierController.index')
 
 
   }
